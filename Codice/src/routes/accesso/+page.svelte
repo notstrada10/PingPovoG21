@@ -16,7 +16,6 @@
 				console.error(error.message);
 			} else {
 				console.log('Login successful:', data.user?.email);
-				// Redirect or perform additional actions after login
 			}
 		} catch (error: any) {
 			console.error('Error during login:', error.message);
@@ -24,17 +23,21 @@
 	}
 </script>
 
+<p>
+	ACCESSO<br />
+</p>
+
 <Menu></Menu>
 <form on:submit|preventDefault={handleLogin}>
-	<label>
-		Email:
-		<input type="email" bind:value={email} />
-	</label>
-	<label>
-		Password:
-		<input type="password" bind:value={password} />
-	</label>
-	<button type="submit">Login</button>
+  <label class="form-label">
+    <span class="label-text">Email:</span>
+    <input type="email" bind:value={email} class="input-field email-input" placeholder="Email" />
+  </label>
+  <label class="form-label">
+    <span class="label-text">Password:</span>
+    <input type="password" bind:value={password} class="input-field password-input" placeholder="Password" />
+  </label>
+  <button type="submit">Conferma</button>
 </form>
 
 <p>
@@ -47,50 +50,68 @@
 
 <style>
 	p {
-		text-align: center;
-		font-size: 64px;
-		font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
-		color: #000000;
-		margin-bottom: 80px;
+	  text-align: center;
+	  font-size: 64px;
+	  font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+	  color: #000000;
+	  margin-bottom: 10px;
 	}
 
-	button,
-	a {
-		text-align: center;
-		cursor: pointer;
-		border: none;
-		outline: none;
-		text-decoration: none;
-		color: #000000;
-	}
+  button,
+  a {
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    color: #000000;
+  }
 
-	.accedi-color {
-		color: dodgerblue;
-	}
+  .accedi-color {
+    color: dodgerblue;
+  }
 
-	.tasto-rosso {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		padding: 15px 40px;
-		border-radius: 45px;
-		display: inline-block;
-		text-align: center;
-		font-size: 64px;
-		font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
-		color: #000000;
-		background-color: orangered;
-	}
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-	.tasto-blu {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		padding: 15px 40px;
-		border-radius: 45px;
-		display: inline-block;
-		text-align: center;
-		font-size: 64px;
-		font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
-		color: #000000;
-		background-color: cornflowerblue;
-	}
-</style>
+  .form-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .label-text {
+    font-size: 24px;
+  }
+
+  .input-field {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 15px 40px;
+    border-radius: 45px;
+    border: none;
+    display: inline-block;
+    text-align: left;
+    font-size: 24px;
+    color: #ff958d;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+    background-color: #ff3131;
+  }
+
+  button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px 40px;
+    border-radius: 45px;
+    display: inline-block;
+    font-size: 24px;
+    color: blue;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+    background-color: cornflowerblue;
+  }
+  </style>
+  

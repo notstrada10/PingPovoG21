@@ -73,10 +73,6 @@
 		color: #ff958d;
 	}
 
-	.accedi-color {
-		color: dodgerblue;
-	}
-
 	.tasto-rosso {
 		margin-top: 10px;
 		margin-bottom: 10px;
