@@ -1,0 +1,1 @@
+export { default as component } from "../../../../src/routes/aggiungipartita-[punti1]-[punti2]/+page.svelte";

@@ -1,0 +1,42 @@
+{
+	"/": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/aggiungipartita-[punti1]-[punti2]": [
+		"src/routes/+layout.ts"
+	],
+	"/amici": [
+		"src/routes/amici/+page.ts",
+		"src/routes/+layout.ts"
+	],
+	"/classifica": [
+		"src/routes/classifica/+page.ts",
+		"src/routes/+layout.ts"
+	],
+	"/contapunti-[mod]-[max]": [
+		"src/routes/+layout.ts"
+	],
+	"/creatorneo": [
+		"src/routes/+layout.ts"
+	],
+	"/login": [
+		"src/routes/+layout.ts"
+	],
+	"/logout": [
+		"src/routes/+layout.ts"
+	],
+	"/profilo-[username]": [
+		"src/routes/profilo-[username]/+page.ts",
+		"src/routes/+layout.ts"
+	],
+	"/recupero": [
+		"src/routes/+layout.ts"
+	],
+	"/sceltagioco": [
+		"src/routes/+layout.ts"
+	],
+	"/signup": [
+		"src/routes/+layout.ts"
+	]
+}

@@ -1,0 +1,508 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API di Gestione Amicizie",
+    "description": "API per gestire amicizie utente"
+  },
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/amicizie": {
+      "post": {
+        "summary": "Invia una richiesta di amicizia",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dati richiesta",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "Nome utente che invia la richiesta"
+                },
+                "amico": {
+                  "type": "string",
+                  "description": "Nome utente destinatario della richiesta"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Richiesta di amicizia inviata con successo"
+          },
+          "204": {
+            "description": "Amicizia già esistente o richiesta duplicata"
+          },
+          "400": {
+            "description": "Errore nei dati di input"
+          },
+          "403": {
+            "description": "Impossibile inviare la richiesta di amicizia"
+          },
+          "404": {
+            "description": "Utente destinatario non trovato"
+          }
+        }
+      },
+      "get": {
+        "summary": "Ottieni elenco amicizie utente",
+        "parameters": [
+          {
+            "name": "utente",
+            "in": "query",
+            "description": "Nome utente di cui ottenere l'elenco amicizie",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Elenco amicizie ottenuto con successo",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Nome utente amico"
+                  },
+                  "numero": {
+                    "type": "string",
+                    "description": "Numero di telefono dell'amico"
+                  },
+                  "PP": {
+                    "type": "integer",
+                    "description": "Punteggio PP dell'amico"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nessuna amicizia trovata per l'utente specificato"
+          },
+          "400": {
+            "description": "Errore nei dati di input"
+          },
+          "403": {
+            "description": "Impossibile ottenere l'elenco amicizie"
+          }
+        }
+      }
+    },
+    "/signup": {
+      "post": {
+        "summary": "Registrazione utente",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dati registrazione utente",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "description": "Indirizzo email utente"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Password utente"
+                },
+                "telefono": {
+                  "type": "string",
+                  "description": "Numero di telefono utente"
+                },
+                "username": {
+                  "type": "string",
+                  "description": "Nome utente"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Utente registrato con successo"
+          },
+          "400": {
+            "description": "Errore nei dati di input"
+          },
+          "403": {
+            "description": "Impossibile registrare l'utente"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Login utente",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dati login utente",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "Nome utente"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Password utente"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Utente loggato con successo"
+          },
+          "400": {
+            "description": "Errore nei dati di input"
+          },
+          "403": {
+            "description": "Impossibile effettuare il login"
+          }
+        }
+      }
+    },
+    "/profilo": {
+      "get": {
+        "summary": "Ottieni il profilo utente",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "Nome utente di cui ottenere il profilo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profilo utente ottenuto con successo"
+          },
+          "400": {
+            "description": "Errore nei dati di input"
+          },
+          "403": {
+            "description": "Impossibile trovare il profilo utente"
+          }
+        }
+      }
+    },
+    "/ppcalc": {
+      "post": {
+        "summary": "Calcola il punteggio PP",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dati per il calcolo del punteggio PP",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "winner": {
+                  "type": "string",
+                  "description": "Nome utente vincitore"
+                },
+                "looser": {
+                  "type": "string",
+                  "description": "Nome utente sconfitto"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Calcolo del punteggio PP completato con successo"
+          },
+          "400": {
+            "description": "Errore nei dati di input"
+          },
+          "403": {
+            "description": "Impossibile calcolare il punteggio PP"
+          },
+          "404": {
+            "description": "Uno dei due utenti non esiste o ha eliminato l'account durante la partita"
+          }
+        }
+      }
+    },
+    "/utenti": {
+      "get": {
+        "summary": "Ottieni elenco utenti",
+        "responses": {
+          "200": {
+            "description": "Elenco utenti ottenuto con successo",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "PP": {
+                    "type": "integer",
+                    "description": "Punteggio PP dell'utente"
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Nome utente"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nessun utente trovato"
+          },
+          "403": {
+            "description": "Impossibile ottenere l'elenco utenti"
+          }
+        }
+      }
+    },
+    "/tornei": {
+      "get": {
+        "summary": "Ottieni elenco tornei",
+        "parameters": [
+          {
+            "name": "utente",
+            "in": "query",
+            "description": "Nome utente di cui ottenere l'elenco tornei",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Elenco tornei ottenuto con successo",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Nome utente creatore del torneo"
+                  },
+                  "nometorneo": {
+                    "type": "string",
+                    "description": "Nome del torneo"
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "Data e ora del torneo"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nessun torneo trovato per l'utente specificato"
+          },
+          "403": {
+            "description": "Impossibile ottenere l'elenco tornei"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuovo torneo",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dati per la creazione del torneo",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "UTENTI": {
+                  "type": "array",
+                  "description": "Elenco utenti partecipanti al torneo"
+                },
+                "nometorneo": {
+                  "type": "string",
+                  "description": "Nome del torneo"
+                },
+                "orario": {
+                  "type": "string",
+                  "description": "Data e ora del torneo"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Torneo creato con successo"
+          },
+          "403": {
+            "description": "Impossibile creare il torneo"
+          }
+        }
+      }
+    },
+    "/torneo": {
+      "get": {
+        "summary": "Ottieni dettagli torneo",
+        "parameters": [
+          {
+            "name": "torneo",
+            "in": "query",
+            "description": "Nome del torneo di cui ottenere i dettagli",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dettagli torneo ottenuti con successo",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "description": "Data di inizio torneo"
+                },
+                "duration": {
+                  "type": "object",
+                  "properties": {
+                    "hours": {
+                      "type": "integer",
+                      "description": "Durata in ore"
+                    }
+                  },
+                  "description": "Durata del torneo"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Nome del torneo"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Descrizione del torneo"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Luogo del torneo"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Stato del torneo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Torneo non trovato"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Amicizia": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Nome utente amico"
+        },
+        "numero": {
+          "type": "string",
+          "description": "Numero di telefono dell'amico"
+        },
+        "PP": {
+          "type": "integer",
+          "description": "Punteggio PP dell'amico"
+        }
+      }
+    },
+    "Utente": {
+      "type": "object",
+      "properties": {
+        "PP": {
+          "type": "integer",
+          "description": "Punteggio PP dell'utente"
+        },
+        "username": {
+          "type": "string",
+          "description": "Nome utente"
+        }
+      }
+    },
+    "Torneo": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Nome utente creatore del torneo"
+        },
+        "nometorneo": {
+          "type": "string",
+          "description": "Nome del torneo"
+        },
+        "date": {
+          "type": "string",
+          "description": "Data e ora del torneo"
+        }
+      }
+    },
+    "DettagliTorneo": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "Data di inizio torneo"
+        },
+        "duration": {
+          "type": "object",
+          "properties": {
+            "hours": {
+              "type": "integer",
+              "description": "Durata in ore"
+            }
+          },
+          "description": "Durata del torneo"
+        },
+        "title": {
+          "type": "string",
+          "description": "Nome del torneo"
+        },
+        "description": {
+          "type": "string",
+          "description": "Descrizione del torneo"
+        },
+        "location": {
+          "type": "string",
+          "description": "Luogo del torneo"
+        },
+        "status": {
+          "type": "string",
+          "description": "Stato del torneo"
+        }
+      }
+    }
+  }
+}
